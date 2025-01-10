@@ -95,6 +95,7 @@ def training_loop(data, device, model, args):
 
     print('Start model training (noisy seq2seq version)')
     for epoch in range(1, n_epochs + 1):
+        print(f"Epoch {epoch} of {n_epochs}")
         running_loss = []
 
         # print(len(noisy_windowed))
@@ -152,7 +153,7 @@ def training_loop(data, device, model, args):
             if trials >= patience and epoch >= 70:
                 print(f'Early stopping on epoch {epoch}')
                 break
-        print("_____________")
+        print()
         print()
     print(f"Validation (General match rate):: {best_acc:2.2%}")
     return writer, logging
