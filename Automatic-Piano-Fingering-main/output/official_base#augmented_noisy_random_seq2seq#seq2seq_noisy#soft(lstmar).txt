@@ -1,0 +1,6 @@
+device: cpu
+SMTH
+dataset noisy_random_seq2seq!!
+batchsize 64
+4
+runs official_base soft(lstm:ar)
