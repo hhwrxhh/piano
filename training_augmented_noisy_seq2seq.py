@@ -51,7 +51,7 @@ def collate_fn_seq2seq(batch):
     return notes, onsets, durations, fingers_padded, ids, torch.IntTensor(lengths), new_edges
 
 
-def create_dataset(representation, batch_size_training=64):
+def create_dataset(representation, batch_size_training=128):
     test_rh, test_lh, noisy_validation_rh, noisy_validation_lh, noisy_windowed = get_representation(representation)
     test_rh_loader = common.create_loader(test_rh, 5, num_workers=1, batch_size=1, collate_fn=collate_fn_seq2seq)
     test_lh_loader = common.create_loader(test_lh, 6, num_workers=1, batch_size=1, collate_fn=collate_fn_seq2seq)
@@ -152,6 +152,8 @@ def training_loop(data, device, model, args):
             if trials >= patience and epoch >= 70:
                 print(f'Early stopping on epoch {epoch}')
                 break
+        print("_____________")
+        print()
     print(f"Validation (General match rate):: {best_acc:2.2%}")
     return writer, logging
 
